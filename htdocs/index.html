@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css"><link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"><link rel="stylesheet" href="/vendor/custom/css/main.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.90/jsrender.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js"></script><script src="https://unpkg.com/directus-sdk-javascript/dist/remote.js"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script><script src="/vendor/custom/js/functions.js"></script><script src="/vendor/custom/js/class/newsblur.js"></script><script src="/vendor/custom/js/class/hackernews.js"></script><script src="/vendor/custom/js/class/reddit.js"></script><script src="/vendor/custom/js/app.js"></script></head><body><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">fivecat.xyz</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="#">Trending</a>
+      <a class="nav-item nav-link" href="#">Startup</a>
+    </div>
+  </div>
+</nav><h1>Trending</h1>
+
+<div id="newsblur"></div>
+
+<div id="hackernews"></div>
+
+<div id="webdev"></div>
+
+<script type="text/x-jsrender" id="myStory">
+  <article>
+    <p>
+      <a class="title" target="_blank" rel="noopener" data-toggle="modal" data-target="#{{:id}}" href="{{:link}}">{{:title}}</a>
+    </p>
+  </article>
+
+  <!-- Modal -->
+  <div class="modal fade" id="{{:id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{:title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{:content}}
+        </div>
+        <!--
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+</script>
+
+<script type="text/x-jsrender" id="myLink">
+  <article>
+    <p>
+      <a class="title" target="_blank" rel="noopener" href="{{:link}}">{{:title}}</a>
+    </p>
+  </article>
+</script>
+
+<script>
+  //var newsblur = new Newsblur();
+  //newsblur.trending();
+
+  var hackernews = new Hackernews();
+  hackernews.top();
+
+  var webdev = new Reddit();
+  webdev.hot();
+</script></body></html>

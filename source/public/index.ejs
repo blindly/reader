@@ -1,0 +1,58 @@
+<h1>Trending</h1>
+
+<div id="newsblur"></div>
+
+<div id="hackernews"></div>
+
+<div id="webdev"></div>
+
+<script type="text/x-jsrender" id="myStory">
+  <article>
+    <p>
+      <a class="title" target="_blank" rel="noopener" data-toggle="modal" data-target="#{{:id}}" href="{{:link}}">{{:title}}</a>
+    </p>
+  </article>
+
+  <!-- Modal -->
+  <div class="modal fade" id="{{:id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{:title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{:content}}
+        </div>
+        <!--
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+</script>
+
+<script type="text/x-jsrender" id="myLink">
+  <article>
+    <p>
+      <a class="title" target="_blank" rel="noopener" href="{{:link}}">{{:title}}</a>
+    </p>
+  </article>
+</script>
+
+<script>
+  //var newsblur = new Newsblur();
+  //newsblur.trending();
+
+  var hackernews = new Hackernews();
+  hackernews.top();
+
+  var webdev = new Reddit();
+  webdev.hot();
+</script>
