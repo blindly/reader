@@ -1,26 +1,52 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css"><link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"><link rel="stylesheet" href="/vendor/custom/css/main.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.90/jsrender.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js"></script><script src="https://unpkg.com/directus-sdk-javascript/dist/remote.js"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script><script src="/vendor/custom/js/functions.js"></script><script src="/vendor/custom/js/class/newsblur.js"></script><script src="/vendor/custom/js/class/hackernews.js"></script><script src="/vendor/custom/js/class/reddit.js"></script><script src="/vendor/custom/js/app.js"></script></head><body><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">fivecat.xyz</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css"><link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"><link rel="stylesheet" href="/vendor/custom/css/main.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.90/jsrender.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js"></script><script src="https://unpkg.com/directus-sdk-javascript/dist/remote.js"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script><script src="/vendor/custom/js/functions.js"></script><script src="/vendor/custom/js/class/newsblur.js"></script><script src="/vendor/custom/js/class/hackernews.js"></script><script src="/vendor/custom/js/class/reddit.js"></script><script src="/vendor/custom/js/class/feedapi.js"></script><script src="/vendor/custom/js/app.js"></script></head><body><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/">fivecat.xyz</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link active" href="#">Trending</a>
-      <a class="nav-item nav-link" href="#">Startup</a>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-item nav-link" id="newsblurLink" href="#">Trending</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" id="startupLink" href="#">Startup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" id="webdevLink" href="#">Web Developer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" id="enterpriseLink" href="#">Enterprise</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" id="gamingLink" href="#">Gaming</a>
+      </li>
+    </ul>
+    <form class="form-inline mt-2 mt-md-0" method="get" action="https://fivecat.xyz">
+      <input class="form-control mr-sm-2" name="q" type="text" placeholder="Web Search" aria-label="Search" autofocus autocomplete="off">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
   </div>
-</nav><h1>Trending</h1>
+</nav><div>
+  <h1 id="title">Trending</h1>
 
-<div id="newsblur"></div>
+  <div id="newsblur"></div>
 
-<div id="hackernews"></div>
+  <div id="hackernews"></div>
 
-<div id="webdev"></div>
+  <div id="webdev"></div>
 
+  <div id="browsers"></div>
+
+  <div id="enterprise"></div>
+
+  <div id="gaming"></div>
+
+</div>
 <script type="text/x-jsrender" id="myStory">
   <article>
     <p>
+      <img src="{{:favicon}}" />
       <a class="title" target="_blank" rel="noopener" data-toggle="modal" data-target="#{{:id}}" href="{{:link}}">{{:title}}</a>
     </p>
   </article>
@@ -51,20 +77,154 @@
 </script>
 
 <script type="text/x-jsrender" id="myLink">
+  {{if title }}
   <article>
     <p>
-      <a class="title" target="_blank" rel="noopener" href="{{:link}}">{{:title}}</a>
+      <img src="{{:favicon}}" />
+      <a class="title" target="_blank" rel="noopener" href="{{:link}}"> {{:title}}</a>
     </p>
   </article>
+  {{/if}}
 </script>
 
 <script>
-  //var newsblur = new Newsblur();
-  //newsblur.trending();
+  var newsblur = new Newsblur();
+  newsblur.trending();
 
-  var hackernews = new Hackernews();
-  hackernews.top();
+  var hackernews = new FeedApi({
+    'category': "startup",
+    'domId': "#hackernews"
+  });
+  hackernews.render();
 
-  var webdev = new Reddit();
+  var webdev = new Reddit({
+    'subreddit': "webdev+javascript",
+    'domId': "#webdev"
+  });
   webdev.hot();
+
+  var browsernews = new FeedApi({
+    'category': "browsers",
+    'domId': "#browsers"
+  });
+  browsernews.render();
+
+  var enterprise = new FeedApi({
+    'category': "enterprise",
+    'domId': "#enterprise"
+  });
+  enterprise.render();
+
+  var gaming = new FeedApi({
+    'category': "gaming",
+    'domId': "#gaming"
+  });
+  gaming.render();
+
+  $('#hackernews').hide();
+  $('#webdev').hide();
+  $('#browsers').hide();
+  $('#enterprise').hide();
+  $('#gaming').hide();
+  $('#title').text("Trending");
+  $('#newsblur').show();
+  $( "#newsblurLink" ).addClass( "active" );
+
+  $('#newsblurLink').click(function () {
+    $('#hackernews').hide();
+    $('#webdev').hide();
+    $('#browsers').hide();
+    $('#enterprise').hide();
+    $('#gaming').hide();
+    $('#newsblur').show();
+    $('#title').text("Trending");
+
+    $( "#webdevLink" ).removeClass( "active" );
+    $( "#gamingLink" ).removeClass( "active" );
+    $( "#enterpriseLink" ).removeClass( "active" );
+    $( "#startupLink" ).removeClass( "active" );
+    
+    $( "#newsblurLink" ).addClass( "active" );
+  });
+
+  //$('a[href="#webdevLink"]').click(function(){
+  $('#startupLink').click(function () {
+    $('#newsblur').hide();
+    $('#webdev').hide();
+    $('#browsers').hide();
+    $('#enterprise').hide();
+    $('#gaming').hide();
+    $('#hackernews').show();
+    $('#title').text("Startup News");
+
+    $( "#startupLink" ).removeClass( "active" );
+    $( "#webdevLink" ).removeClass( "active" );
+    $( "#enterpriseLink" ).removeClass( "active" );
+    $( "#gamingLink" ).removeClass( "active" );
+    
+    $( "#newsblurLink" ).addClass( "active" );
+
+  });
+
+  //$('a[href="#webdevLink"]').click(function(){
+  $('#webdevLink').click(function () {
+    $('#title').text("Web Dev");
+    $('#hackernews').hide();
+    $('#enterprise').hide();
+    $('#gaming').hide();
+    $('#webdev').show();
+
+    $( "#startupLink" ).removeClass( "active" );
+    $( "#newsblurLink" ).removeClass( "active" );
+    $( "#enterpriseLink" ).removeClass( "active" );
+    $( "#gamingLink" ).removeClass( "active" );
+    
+    $( "#webdevLink" ).addClass( "active" );
+  });
+
+  //$('a[href="#startupLink"]').click(function(){
+  $('#startupLink').click(function () {
+    $('#title').text("Startup News");
+    $('#hackernews').show();
+    $('#webdev').hide();
+    $('#enterprise').hide();
+    $('#gaming').hide();
+
+    $( "#webdevLink" ).removeClass( "active" );
+    $( "#newsblurLink" ).removeClass( "active" );
+    $( "#enterpriseLink" ).removeClass( "active" );
+    $( "#gamingLink" ).removeClass( "active" );
+    
+    $( "#startupLink" ).addClass( "active" );
+  });
+
+  $('#enterpriseLink').click(function () {
+    $('#title').text("Enterprise News");
+    $('#enterprise').show();
+    $('#hackernews').hide();
+    $('#webdev').hide();
+    $('#gaming').hide();
+
+    $( "#webdevLink" ).removeClass( "active" );
+    $( "#newsblurLink" ).removeClass( "active" );
+    $( "#startupLink" ).removeClass( "active" );
+    $( "#gamingLink" ).removeClass( "active" );
+    
+    $( "#enterpriseLink" ).addClass( "active" );
+  });
+
+  $('#gamingLink').click(function () {
+    $('#title').text("Gaming News");
+    $('#enterprise').hide();
+    $('#hackernews').hide();
+    $('#webdev').hide();
+    $('#gaming').show();
+
+    $( "#webdevLink" ).removeClass( "active" );
+    $( "#newsblurLink" ).removeClass( "active" );
+    $( "#enterpriseLink" ).removeClass( "active" );
+    $( "#startupLink" ).removeClass( "active" );
+    
+    $( "#gamingLink" ).addClass( "active" );
+  });
 </script></body></html>
