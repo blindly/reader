@@ -1,9 +1,10 @@
 //@ts-check
 class Reddit {
-  constructor() {
-    this.apiUrl = "https://www.reddit.com/r/webdev+javascript/hot.json";
+  constructor(data) {
+    this.subreddit = data.subreddit;
+    this.apiUrl = `https://www.reddit.com/r/${this.subreddit}/hot.json`;
     this.template = "#myLink";
-    this.domId = "#webdev";
+    this.domId = data.domId;
   }
 
   hot() {

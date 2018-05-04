@@ -1,10 +1,10 @@
 //@ts-check
 class Newsblur {
   constructor() {
-    this.apiUrl = "//www.newsblur.com/reader/river_stories?page=1,2";
+    this.apiUrl = "//www.newsblur.com/reader/river_stories";
     //this.apiUrl = "http://www.newsblur.com/reader/river_stories?page=1,2&feeds=2,12,1665281,161,576138,6188470";
     this.template = "#myStory";
-    this.domId = "#myStories";
+    this.domId = "#newsblur";
   }
 
   trending() {
