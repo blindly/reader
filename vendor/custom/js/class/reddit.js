@@ -3,7 +3,7 @@ class Reddit {
   constructor(data) {
     this.subreddit = data.subreddit;
     this.apiUrl = `https://www.reddit.com/r/${this.subreddit}/hot.json`;
-    this.template = "#myLink";
+    this.template = data.template;
     this.domId = data.domId;
   }
 
@@ -24,11 +24,16 @@ class Reddit {
             "title": story.data.title,
             "link": story.data.url,
             //"date": story.date,
-            //"content": story.story_content,
+            "content": story.data.url,
             "domain": story.data.domain,
             "favicon": generateFavicon( story.data.url ),
             "show": true
           };
+
+          // No Self Posts!
+          if ( story.data.is_self ) {
+            myStory.show = false;
+          }
 
           // No stories that have questions for title
           const isQuestion = myStory.title.indexOf('?') > -1;
