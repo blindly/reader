@@ -16,6 +16,8 @@
 
 <div id="devfun"></div>
 
+<div id="crypto"></div>
+
 <script type="text/x-jsrender" id="myStory">
   <article>
     <p>
@@ -158,6 +160,13 @@
   });
   enterprise.render();
 
+  var altcoin = new FeedApi({
+    'category': "crypto",
+    'domId': "#crypto",
+    'template': "#myLink"
+  });
+  altcoin.render();
+
   var gaming = new FeedApi({
     'category': "gaming",
     'domId': "#gaming",
@@ -220,6 +229,11 @@
   $('#devfunLink').click(function () {
     showSection('devfun');
     $('#title').text("Dev Humor");
+  });
+
+  $('#cryptoLink').click(function () {
+    showSection('crypto');
+    $('#title').text("AltCoin News");
   });
 
 
