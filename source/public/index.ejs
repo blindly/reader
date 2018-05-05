@@ -1,19 +1,21 @@
-<div>
-  <h1 id="title">Trending</h1>
+<h1 class="capitalize" id="title">Trending</h1>
 
-  <div id="newsblur"></div>
+<div id="newsblur"></div>
 
-  <div id="hackernews"></div>
+<div id="startup"></div>
 
-  <div id="webdev"></div>
+<div id="webdev"></div>
 
-  <div id="browsers"></div>
+<div id="browsers"></div>
 
-  <div id="enterprise"></div>
+<div id="enterprise"></div>
 
-  <div id="gaming"></div>
+<div id="comics"></div>
 
-</div>
+<div id="gaming"></div>
+
+<div id="devfun"></div>
+
 <script type="text/x-jsrender" id="myStory">
   <article>
     <p>
@@ -47,6 +49,72 @@
 
 </script>
 
+<script type="text/x-jsrender" id="myComic">
+  <article>
+    <p>
+      <img src="{{:favicon}}" />
+      <a class="title" target="_blank" rel="noopener" data-toggle="modal" data-target="#{{:id}}" href="{{:link}}">{{:title}}</a>
+    </p>
+  </article>
+
+  <!-- Modal -->
+  <div class="modal fade" id="{{:id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{:title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{:content}}
+        </div>
+        <!--
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+</script>
+
+<script type="text/x-jsrender" id="redditComic">
+  <article>
+    <p>
+      <img src="{{:favicon}}" />
+      <a class="title" target="_blank" rel="noopener" data-toggle="modal" data-target="#{{:id}}" href="{{:link}}">{{:title}}</a>
+    </p>
+  </article>
+
+  <!-- Modal -->
+  <div class="modal fade" id="{{:id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{:title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="{{:content}}" />
+        </div>
+        <!--
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+</script>
+
 <script type="text/x-jsrender" id="myLink">
   {{if title }}
   <article>
@@ -62,140 +130,113 @@
   var newsblur = new Newsblur();
   newsblur.trending();
 
-  var hackernews = new FeedApi({
+  var startup = new FeedApi({
     'category': "startup",
-    'domId': "#hackernews"
+    'domId': "#startup",
+    'template': "#myLink"
   });
-  hackernews.render();
+  startup.render();
 
   var webdev = new Reddit({
     'subreddit': "webdev+javascript",
-    'domId': "#webdev"
+    'domId': "#webdev",
+    'template': "#myLink"
   });
   webdev.hot();
 
   var browsernews = new FeedApi({
     'category': "browsers",
-    'domId': "#browsers"
+    'domId': "#browsers",
+    'template': "#myLink"
   });
   browsernews.render();
 
   var enterprise = new FeedApi({
     'category': "enterprise",
-    'domId': "#enterprise"
+    'domId': "#enterprise",
+    'template': "#myLink"
   });
   enterprise.render();
 
   var gaming = new FeedApi({
     'category': "gaming",
-    'domId': "#gaming"
+    'domId': "#gaming",
+    'template': "#myLink"
   });
   gaming.render();
 
-  $('#hackernews').hide();
-  $('#webdev').hide();
-  $('#browsers').hide();
-  $('#enterprise').hide();
-  $('#gaming').hide();
+  var comics = new FeedApi({
+    'category': "comic",
+    'domId': "#comics",
+    'template': "#myComic"
+  });
+  comics.render();
+
+  var devfun = new Reddit({
+    'subreddit': "ProgrammerHumor",
+    'domId': "#devfun",
+    'template': "#redditComic"
+  });
+  devfun.hot();
+
+  showSection('newsblur');
   $('#title').text("Trending");
-  $('#newsblur').show();
-  $( "#newsblurLink" ).addClass( "active" );
 
   $('#newsblurLink').click(function () {
-    $('#hackernews').hide();
-    $('#webdev').hide();
-    $('#browsers').hide();
-    $('#enterprise').hide();
-    $('#gaming').hide();
-    $('#newsblur').show();
+    showSection('newsblur');
     $('#title').text("Trending");
-
-    $( "#webdevLink" ).removeClass( "active" );
-    $( "#gamingLink" ).removeClass( "active" );
-    $( "#enterpriseLink" ).removeClass( "active" );
-    $( "#startupLink" ).removeClass( "active" );
-    
-    $( "#newsblurLink" ).addClass( "active" );
   });
 
-  //$('a[href="#webdevLink"]').click(function(){
-  $('#startupLink').click(function () {
-    $('#newsblur').hide();
-    $('#webdev').hide();
-    $('#browsers').hide();
-    $('#enterprise').hide();
-    $('#gaming').hide();
-    $('#hackernews').show();
-    $('#title').text("Startup News");
-
-    $( "#startupLink" ).removeClass( "active" );
-    $( "#webdevLink" ).removeClass( "active" );
-    $( "#enterpriseLink" ).removeClass( "active" );
-    $( "#gamingLink" ).removeClass( "active" );
-    
-    $( "#newsblurLink" ).addClass( "active" );
-
-  });
-
-  //$('a[href="#webdevLink"]').click(function(){
   $('#webdevLink').click(function () {
     $('#title').text("Web Dev");
-    $('#hackernews').hide();
-    $('#enterprise').hide();
-    $('#gaming').hide();
-    $('#webdev').show();
-
-    $( "#startupLink" ).removeClass( "active" );
-    $( "#newsblurLink" ).removeClass( "active" );
-    $( "#enterpriseLink" ).removeClass( "active" );
-    $( "#gamingLink" ).removeClass( "active" );
-    
-    $( "#webdevLink" ).addClass( "active" );
+    showSection('webdev');
   });
 
-  //$('a[href="#startupLink"]').click(function(){
+  $('#browsersLink').click(function () {
+    $('#title').text("Web Dev");
+    showSection('browsers');
+  });
+
   $('#startupLink').click(function () {
     $('#title').text("Startup News");
-    $('#hackernews').show();
-    $('#webdev').hide();
-    $('#enterprise').hide();
-    $('#gaming').hide();
-
-    $( "#webdevLink" ).removeClass( "active" );
-    $( "#newsblurLink" ).removeClass( "active" );
-    $( "#enterpriseLink" ).removeClass( "active" );
-    $( "#gamingLink" ).removeClass( "active" );
-    
-    $( "#startupLink" ).addClass( "active" );
+    showSection('startup');
   });
 
   $('#enterpriseLink').click(function () {
     $('#title').text("Enterprise News");
-    $('#enterprise').show();
-    $('#hackernews').hide();
-    $('#webdev').hide();
-    $('#gaming').hide();
-
-    $( "#webdevLink" ).removeClass( "active" );
-    $( "#newsblurLink" ).removeClass( "active" );
-    $( "#startupLink" ).removeClass( "active" );
-    $( "#gamingLink" ).removeClass( "active" );
-    
-    $( "#enterpriseLink" ).addClass( "active" );
+    showSection('enterprise');
   });
 
   $('#gamingLink').click(function () {
     $('#title').text("Gaming News");
-    $('#enterprise').hide();
-    $('#hackernews').hide();
-    $('#webdev').hide();
-    $('#gaming').show();
-
-    $( "#webdevLink" ).removeClass( "active" );
-    $( "#newsblurLink" ).removeClass( "active" );
-    $( "#enterpriseLink" ).removeClass( "active" );
-    $( "#startupLink" ).removeClass( "active" );
-    
-    $( "#gamingLink" ).addClass( "active" );
+    showSection('gaming');
   });
+
+  $('#comicsLink').click(function () {
+    showSection('comics');
+    $('#title').text("Comics");
+  });
+
+  $('#devfunLink').click(function () {
+    showSection('devfun');
+    $('#title').text("Dev Humor");
+  });
+
+
+  function showSection(currentCategory) {
+    const categories = ['newsblur', 'startup', 'webdev', 'gaming', 'enterprise', 'browsers', 'comics', 'devfun'];
+    categories.forEach(function (category) {
+      var link = `#${category}Link`;
+      var domId = `#${category}`;
+      if (category === currentCategory) {
+        $(domId).show();
+        $(link).addClass("active");
+        $('#title').text(`${category} News`);
+      } else {
+        $(domId).hide();
+        $(link).removeClass("active");
+      }
+    });
+
+  }
 </script>

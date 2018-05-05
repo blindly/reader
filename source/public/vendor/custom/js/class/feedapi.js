@@ -4,7 +4,8 @@ class FeedApi {
     //this.apiUrl = "https://api.fivecat.xyz/api/index.php/feed/startup";
     this.category = data.category;
     this.apiUrl = `https://api.fivecat.xyz/api/index.php/feed/${this.category}`;
-    this.template = "#myLink";
+    //this.template = "#myLink";
+    this.template = data.template;
     this.domId = data.domId;
   }
 
@@ -15,6 +16,7 @@ class FeedApi {
       .then( response => {
         //console.log(response);
         let myStories = [];
+        let titles = [];
 
         for (const story of response.stories){
 
@@ -25,9 +27,9 @@ class FeedApi {
             "title": story.title,
             "link": story.link,
             "date": story.date,
-            //"content": story.story_content,
-            "domain": getDomain( story.story_permalink ),
-            "favicon": generateFavicon( story.story_permalink ),
+            "content": story.description,
+            "domain": getDomain( story.link ),
+            "favicon": generateFavicon( story.link ),
             "show": true
           };
 
@@ -48,6 +50,15 @@ class FeedApi {
           console.debug(blacklisted);
           if ( blacklisted ) {
             myStory.show = false;
+          }
+
+          // Remove duplicate stories
+          var duplicate = titles.indexOf(story.title) != -1;
+          console.debug(story.title + ": dup: " + duplicate );
+          if ( duplicate ) {
+            myStory.show = false;
+          } else {
+            titles.push(story.title);
           }
 
           console.debug(myStory);
