@@ -1,123 +1,38 @@
-<h1 class="capitalize" id="title">Trending</h1>
-
-<div id="newsblur"></div>
-
-<div id="startup"></div>
-
-<div id="webdev"></div>
-
-<div id="browsers"></div>
-
-<div id="enterprise"></div>
-
-<div id="comics"></div>
-
-<div id="gaming"></div>
-
-<div id="devfun"></div>
-
-<div id="crypto"></div>
-
-<script type="text/x-jsrender" id="myStory">
+<script type="text/x-jsrender" id="story">
   <article>
     <p>
       <img src="{{:favicon}}" />
-      <a class="title" target="_blank" rel="noopener" data-toggle="modal" data-target="#{{:id}}" href="{{:link}}">{{:title}}</a>
+      <a data-component="modal" data-target="#{{:id}}">{{:title}}</a> 
     </p>
   </article>
-
-  <!-- Modal -->
-  <div class="modal fade" id="{{:id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{:title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          {{:content}}
-        </div>
-        <!--
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-        -->
+  
+  <div id="{{:id}}" class="modal-box hide">
+      <div class="modal">
+          <span class="close"></span>
+          <div class="modal-header">{{:title}}</div>
+          <div class="modal-body">{{:content}}</div>
       </div>
-    </div>
   </div>
-
 </script>
 
-<script type="text/x-jsrender" id="myComic">
+<script type="text/x-jsrender" id="image">
   <article>
-    <p>
-      <img src="{{:favicon}}" />
-      <a class="title" target="_blank" rel="noopener" data-toggle="modal" data-target="#{{:id}}" href="{{:link}}">{{:title}}</a>
-    </p>
+  <p>
+    <img src="{{:favicon}}" />
+    <a data-component="modal" data-target="#{{:id}}">{{:title}}</a> 
+  </p>
   </article>
 
-  <!-- Modal -->
-  <div class="modal fade" id="{{:id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{:title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          {{:content}}
-        </div>
-        <!--
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-        -->
-      </div>
+  <div id="{{:id}}" class="modal-box hide">
+    <div class="modal">
+        <span class="close"></span>
+        <div class="modal-header">{{:title}}</div>
+        <div class="modal-body"><img src="{{:content}}"/></div>
     </div>
   </div>
-
 </script>
 
-<script type="text/x-jsrender" id="redditComic">
-  <article>
-    <p>
-      <img src="{{:favicon}}" />
-      <a class="title" target="_blank" rel="noopener" data-toggle="modal" data-target="#{{:id}}" href="{{:link}}">{{:title}}</a>
-    </p>
-  </article>
-
-  <!-- Modal -->
-  <div class="modal fade" id="{{:id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{:title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <img src="{{:content}}" />
-        </div>
-        <!--
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-        -->
-      </div>
-    </div>
-  </div>
-
-</script>
-
-<script type="text/x-jsrender" id="myLink">
+<script type="text/x-jsrender" id="link">
   {{if title }}
   <article>
     <p>
@@ -128,129 +43,14 @@
   {{/if}}
 </script>
 
-<script>
-  var newsblur = new Newsblur();
-  newsblur.trending();
-
-  var startup = new FeedApi({
-    'category': "startup",
-    'domId': "#startup",
-    'template': "#myLink"
-  });
-  startup.render();
-
-  var webdev = new Reddit({
-    'subreddit': "webdev+javascript",
-    'domId': "#webdev",
-    'template': "#myLink"
-  });
-  webdev.hot();
-
-  var browsernews = new FeedApi({
-    'category': "browsers",
-    'domId': "#browsers",
-    'template': "#myLink"
-  });
-  browsernews.render();
-
-  var enterprise = new FeedApi({
-    'category': "enterprise",
-    'domId': "#enterprise",
-    'template': "#myLink"
-  });
-  enterprise.render();
-
-  var altcoin = new FeedApi({
-    'category': "crypto",
-    'domId': "#crypto",
-    'template': "#myLink"
-  });
-  altcoin.render();
-
-  var gaming = new FeedApi({
-    'category': "gaming",
-    'domId': "#gaming",
-    'template': "#myLink"
-  });
-  gaming.render();
-
-  var comics = new FeedApi({
-    'category': "comic",
-    'domId': "#comics",
-    'template': "#myComic"
-  });
-  comics.render();
-
-  var devfun = new Reddit({
-    'subreddit': "ProgrammerHumor",
-    'domId': "#devfun",
-    'template': "#redditComic"
-  });
-  devfun.hot();
-
-  showSection('newsblur');
-  $('#title').text("Trending");
-
-  $('#newsblurLink').click(function () {
-    showSection('newsblur');
-    $('#title').text("Trending");
-  });
-
-  $('#webdevLink').click(function () {
-    $('#title').text("Web Dev");
-    showSection('webdev');
-  });
-
-  $('#browsersLink').click(function () {
-    $('#title').text("Web Dev");
-    showSection('browsers');
-  });
-
-  $('#startupLink').click(function () {
-    $('#title').text("Startup News");
-    showSection('startup');
-  });
-
-  $('#enterpriseLink').click(function () {
-    $('#title').text("Enterprise News");
-    showSection('enterprise');
-  });
-
-  $('#gamingLink').click(function () {
-    $('#title').text("Gaming News");
-    showSection('gaming');
-  });
-
-  $('#comicsLink').click(function () {
-    showSection('comics');
-    $('#title').text("Comics");
-  });
-
-  $('#devfunLink').click(function () {
-    showSection('devfun');
-    $('#title').text("Dev Humor");
-  });
-
-  $('#cryptoLink').click(function () {
-    showSection('crypto');
-    $('#title').text("AltCoin News");
-  });
-
-
-  function showSection(currentCategory) {
-    const categories = ['newsblur', 'startup', 'webdev', 'gaming', 'enterprise', 'browsers', 'comics', 'devfun', 'crypto'];
-    categories.forEach(function (category) {
-      var link = `#${category}Link`;
-      var domId = `#${category}`;
-      if (category === currentCategory) {
-        $(domId).show();
-        $(link).addClass("active");
-        $('#title').text(`${category} News`);
-      } else {
-        $(domId).hide();
-        $(link).removeClass("active");
-      }
-    });
-
-  }
+<script type="text/x-jsrender" id="text">
+  {{if title }}
+  <article>
+    <p>
+      {{:title}} {{:selftext}}
+    </p>
+  </article>
+  {{/if}}
 </script>
+
+<script src="/vendor/app/js/app.kube.js"></script>

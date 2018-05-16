@@ -1,13 +1,12 @@
 doctype
-html
+html(lang="en")
   head
-    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
-    meta(name="referrer" content="no-referrer")
-    title Reader | Fivecat.XYZ
-    include _assets/css
-    include _assets/scripts
+    include _assets/analytics
+    include _assets/assets
+    include _assets/meta
+    include _assets/schema
+    include _assets/validation
   body
-
-    != partial("_shared/navbar.ejs")
-
+    != partial("_shared/navbar.kube.ejs")
+    
     != yield
