@@ -17,6 +17,7 @@ class Reddit {
       .then(response => {
         console.debug(response);
         let myStories = [];
+        let titles = [];
 
         for (const story of response.data.children) {
 
@@ -63,6 +64,15 @@ class Reddit {
           console.debug("Blacklisted: " + blacklisted);
           if (blacklisted) {
             myStory.show = false;
+          }
+
+          // Remove duplicate stories
+          var duplicate = titles.indexOf(story.data.title) != -1;
+          console.debug(story.data.title + ": dup: " + duplicate );
+          if ( duplicate ) {
+            myStory.show = false;
+          } else {
+            titles.push(story.data.title);
           }
 
           console.debug(myStory);

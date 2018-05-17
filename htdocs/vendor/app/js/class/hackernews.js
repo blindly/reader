@@ -13,6 +13,7 @@ class Hackernews {
       .then( response => {
         //console.log(response);
         let myStories = [];
+        let titles = [];
 
         for (const story of response.stories){
 
@@ -46,6 +47,15 @@ class Hackernews {
           console.debug(blacklisted);
           if ( blacklisted ) {
             myStory.show = false;
+          }
+
+          // Remove duplicate stories
+          var duplicate = titles.indexOf(story.title) != -1;
+          console.debug(story.title + ": dup: " + duplicate );
+          if ( duplicate ) {
+            myStory.show = false;
+          } else {
+            titles.push(story.title);
           }
 
           console.debug(myStory);

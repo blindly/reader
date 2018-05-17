@@ -14,6 +14,7 @@ class Newsblur {
       .then( response => {
 
         let myStories = [];
+        let titles = [];
 
         for (const story of response.stories){
           let myStory = {
@@ -44,6 +45,15 @@ class Newsblur {
           console.debug(blacklisted);
           if ( blacklisted ) {
             myStory.show = false;
+          }
+
+          // Remove duplicate stories
+          var duplicate = titles.indexOf(story.story_title) != -1;
+          console.debug(story.story_title + ": dup: " + duplicate );
+          if ( duplicate ) {
+            myStory.show = false;
+          } else {
+            titles.push(story.story_title);
           }
 
           console.debug(myStory);
