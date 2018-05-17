@@ -74,7 +74,8 @@ comics.render();
 var devfun = new Reddit({
   'subreddit': "ProgrammerHumor",
   'domId': "#devfun",
-  'template': "#image"
+  'template': "#image",
+  "image": true,
 });
 devfun.hot();
 

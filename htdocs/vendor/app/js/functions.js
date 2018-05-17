@@ -15,10 +15,14 @@ function generateFavicon(link) {
 
 function generateQuickGuid() {
   return Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15);
+    Math.random().toString(36).substring(2, 15);
 }
 
-function imgurLink(url) {
-  var imgurArray = url.split('.');
-  conso
+function fileValidation(filePath) {
+  var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+  if (!allowedExtensions.exec(filePath)) {
+    return false;
+  } else {
+    return true;
+  }
 }
