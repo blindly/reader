@@ -1,12 +1,13 @@
 doctype
 html(lang="en")
   head
+    title= title
     include _assets/manifest
-    include _assets/analytics
+    include _assets/validation
     include _assets/assets
     include _assets/meta
     include _assets/schema
-    include _assets/validation
+    include _assets/analytics
   body
     != partial("_shared/navbar.kube.ejs")
     != yield

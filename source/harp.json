@@ -1,1 +1,5 @@
-{}
+{
+  "globals": {
+    "title": "Reader"
+  }
+}
