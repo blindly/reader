@@ -26,3 +26,13 @@ function fileValidation(filePath) {
     return true;
   }
 }
+
+function getBlacklistedDomains() {
+  // Blacklisted domains because they have crap stories
+  const blacklistDomains = [
+    'boingboing.net',
+    //'www.theverge.com',
+  ];
+
+  return blacklistDomains;
+}

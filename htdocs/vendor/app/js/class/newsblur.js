@@ -36,11 +36,7 @@ class Newsblur {
           }
 
           // Blacklisted domains because they have crap stories
-          const blacklistDomains = [
-            'boingboing.net',
-            //'www.theverge.com'
-            ];
-            
+          const blacklistDomains = getBlacklistedDomains();
           const blacklisted = blacklistDomains.indexOf( myStory.domain ) != -1;
           console.debug(blacklisted);
           if ( blacklisted ) {
