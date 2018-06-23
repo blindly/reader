@@ -25,7 +25,7 @@ webdev.hot();
 var programming = new FeedApi({
   'category': "programming",
   'domId': "#programming",
-  'template': "#link"
+  'template': "#story"
 });
 programming.render();
 
@@ -33,7 +33,7 @@ programming.render();
 var browsernews = new FeedApi({
   'category': "browsers",
   'domId': "#browsers",
-  'template': "#link"
+  'template': "#story"
 });
 browsernews.render();
 
@@ -41,7 +41,7 @@ browsernews.render();
 var enterprise = new FeedApi({
   'category': "enterprise",
   'domId': "#enterprise",
-  'template': "#link"
+  'template': "#story"
 });
 enterprise.render();
 
@@ -49,7 +49,7 @@ enterprise.render();
 var altcoin = new FeedApi({
   'category': "crypto",
   'domId': "#crypto",
-  'template': "#link"
+  'template': "#story"
 });
 altcoin.render();
 
@@ -57,7 +57,7 @@ altcoin.render();
 var gaming = new FeedApi({
   'category': "gaming",
   'domId': "#gaming",
-  'template': "#link"
+  'template': "#story"
 });
 gaming.render();
 
